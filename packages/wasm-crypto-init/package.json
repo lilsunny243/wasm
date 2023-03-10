@@ -20,19 +20,19 @@
     "./detectPackage.cjs"
   ],
   "type": "module",
-  "version": "6.4.2-33-x",
+  "version": "7.0.3-5-x",
   "browser": "wasm.js",
   "main": "wasm.js",
   "react-native": "asm.js",
   "dependencies": {
-    "@babel/runtime": "^7.21.0",
-    "@polkadot/wasm-bridge": "6.4.2-33-x",
-    "@polkadot/wasm-crypto-asmjs": "6.4.2-33-x",
-    "@polkadot/wasm-crypto-wasm": "6.4.2-33-x"
+    "@polkadot/wasm-bridge": "7.0.3-5-x",
+    "@polkadot/wasm-crypto-asmjs": "7.0.3-5-x",
+    "@polkadot/wasm-crypto-wasm": "7.0.3-5-x",
+    "tslib": "^2.5.0"
   },
   "devDependencies": {
-    "@polkadot/util": "^10.4.2",
-    "@polkadot/x-randomvalues": "^10.4.2"
+    "@polkadot/util": "^11.0.1",
+    "@polkadot/x-randomvalues": "^11.0.1"
   },
   "peerDependencies": {
     "@polkadot/util": "*",

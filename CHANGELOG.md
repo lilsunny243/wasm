@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 7.0.2 Mar 4, 2023
+
+Changes:
+
+- Update to latest `@polkadot/dev` (w/ tsc jsx detection output changes)
+
+
+## 7.0.1 Mar 4, 2023
+
+Changes:
+
+- Swap TS -> JS compiler to use tsc (from babel)
+- Adjust all tests to use `node:test` runner (ESM & CJS variants)
+
+
 ## 6.4.1 Dec 3, 2022
 
 Changes:

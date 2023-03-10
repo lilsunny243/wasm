@@ -11,10 +11,10 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "6.4.2-33-x",
+  "version": "7.0.3-5-x",
   "versions": {
-    "git": "6.4.2-33-x",
-    "npm": "6.4.1"
+    "git": "7.0.3-5-x",
+    "npm": "7.0.2"
   },
   "workspaces": [
     "packages/*"
@@ -42,10 +42,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.21.0",
-    "@polkadot/dev": "^0.69.21",
-    "@polkadot/util": "^10.4.2",
-    "@polkadot/x-randomvalues": "^10.4.2",
-    "@types/node": "^18.14.2",
+    "@polkadot/dev": "^0.71.1",
+    "@polkadot/util": "^11.0.1",
+    "@polkadot/x-randomvalues": "^11.0.1",
+    "@types/node": "^18.14.6",
     "fflate": "^0.7.4"
   },
   "resolutions": {

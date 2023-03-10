@@ -17,13 +17,13 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "6.4.2-33-x",
+  "version": "7.0.3-5-x",
   "main": "index.js",
   "dependencies": {
-    "@babel/runtime": "^7.21.0"
+    "tslib": "^2.5.0"
   },
   "devDependencies": {
-    "@polkadot/util": "^10.4.2"
+    "@polkadot/util": "^11.0.1"
   },
   "peerDependencies": {
     "@polkadot/util": "*"
