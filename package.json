@@ -1,7 +1,6 @@
 {
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "bugs": "https://github.com/polkadot-js/wasm/issues",
-  "engine-strict": true,
   "engines": {
     "node": ">=18.14"
   },
@@ -15,10 +14,10 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "7.0.4-11-x",
+  "version": "7.1.2-0-x",
   "versions": {
-    "git": "7.0.4-11-x",
-    "npm": "7.0.3"
+    "git": "7.1.2-0-x",
+    "npm": "7.1.1"
   },
   "workspaces": [
     "packages/*"
@@ -40,18 +39,18 @@
     "test:js": "yarn test:wasm-crypto:js",
     "test:wasm-crypto:deno": "deno test --allow-read --import-map=import_map.json packages/wasm-crypto/test/deno.ts",
     "test:wasm-crypto:js": "yarn test:wasm-crypto:js:jest && yarn test:wasm-crypto:js:node",
-    "test:wasm-crypto:js:jest": "polkadot-dev-run-test --env node --loader ./packages/wasm-crypto/test/loader-build.js test/jest.spec.ts",
+    "test:wasm-crypto:js:jest": "polkadot-dev-run-test --env node --loader ./packages/wasm-crypto/test/loader-build.js",
     "test:wasm-crypto:js:node": "node --no-warnings --loader ./packages/wasm-crypto/test/loader-build.js ./packages/wasm-crypto/test/wasm.js && node --no-warnings --loader ./packages/wasm-crypto/test/loader-build.js ./packages/wasm-crypto/test/asm.js",
     "test:wasm-crypto:rust": "cd packages/wasm-crypto && RUST_BACKTRACE=full cargo test --release -- --test-threads=1 --nocapture"
   },
   "devDependencies": {
-    "@polkadot/dev": "^0.72.25",
-    "@polkadot/util": "^11.1.2",
-    "@polkadot/x-randomvalues": "^11.1.2",
-    "@types/node": "^18.15.9",
+    "@polkadot/dev": "^0.73.2",
+    "@polkadot/util": "^12.0.1",
+    "@polkadot/x-randomvalues": "^12.0.1",
+    "@types/node": "^18.15.13",
     "fflate": "^0.7.4"
   },
   "resolutions": {
-    "typescript": "^5.0.2"
+    "typescript": "^5.0.4"
   }
 }
