@@ -1,20 +1,31 @@
 // Copyright 2019-2023 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+/* global it */
+
 import crypto from 'crypto';
 
 import { assert, hexToU8a, stringToU8a, u8aToHex } from '@polkadot/util';
 
-/** @internal */
+/**
+ * @internal
+ * @param {*} pair
+ */
 function extractKeys (pair) {
   return [pair, pair.slice(64), pair.slice(0, 64)];
 }
 
-/** @internal */
+/**
+ * @internal
+ * @param {*} wasm
+ */
 function randomPair (wasm) {
   return extractKeys(wasm.sr25519KeypairFromSeed(crypto.randomBytes(32)));
 }
 
+/**
+ * @param {*} wasm
+ */
 export function sr25519PairFromSeed (wasm) {
   it('creates a known pair from a known seed', () => {
     const pair = wasm.sr25519KeypairFromSeed(stringToU8a('12345678901234567890123456789012'));
@@ -26,6 +37,9 @@ export function sr25519PairFromSeed (wasm) {
   });
 }
 
+/**
+ * @param {*} wasm
+ */
 export function sr25519DevFromSeed (wasm) {
   it('creates a known development pair', () => {
     const pair = wasm.sr25519KeypairFromSeed(hexToU8a('0xfac7959dbfe72f052e5a0c3c8d6530f202b02fd8f9f5ca3580ec8deb7797479e'));
@@ -37,6 +51,9 @@ export function sr25519DevFromSeed (wasm) {
   });
 }
 
+/**
+ * @param {*} wasm
+ */
 export function sr25519VerifyExisting (wasm) {
   it('verifies a known signature', () => {
     const PK = hexToU8a('0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d');
@@ -51,6 +68,9 @@ export function sr25519VerifyExisting (wasm) {
   });
 }
 
+/**
+ * @param {*} wasm
+ */
 export function sr25519SignDeterministic (wasm) {
   it('creates non-deterministic signatures', () => {
     const [, pk, sk] = randomPair(wasm);
@@ -64,6 +84,9 @@ export function sr25519SignDeterministic (wasm) {
   });
 }
 
+/**
+ * @param {*} wasm
+ */
 export function sr25519SignAndVerify (wasm) {
   it('verifies a created signature', () => {
     const [, pk, sk] = randomPair(wasm);
@@ -77,6 +100,9 @@ export function sr25519SignAndVerify (wasm) {
   });
 }
 
+/**
+ * @param {*} wasm
+ */
 export function sr25519DeriveHard (wasm) {
   it('derives using a hard path', () => {
     const [pair] = randomPair(wasm);
@@ -85,10 +111,13 @@ export function sr25519DeriveHard (wasm) {
     // console.log('\tSEC', u8aToHex(derived.slice(0, 64)));
     // console.log('\tPUB', u8aToHex(derived.slice(64)));
 
-    assert(derived.length === 96);
+    assert(derived.length === 96, 'Derived key length mismatch');
   });
 }
 
+/**
+ * @param {*} wasm
+ */
 export function sr25519DeriveHardKnown (wasm) {
   it('derives a known hard key', () => {
     const derived = wasm.sr25519DeriveKeypairHard(hexToU8a('0x28b0ae221c6bb06856b287f60d7ea0d98552ea5a16db16956849aa371db3eb51fd190cce74df356432b410bd64682309d6dedb27c76845daf388557cbac3ca3446ebddef8cd9bb167dc30878d7113b7e168e6f0646beffd77d69d39bad76b47a'), hexToU8a('0x14416c6963650000000000000000000000000000000000000000000000000000'));
@@ -101,6 +130,9 @@ export function sr25519DeriveHardKnown (wasm) {
   });
 }
 
+/**
+ * @param {*} wasm
+ */
 export function sr25519DeriveSoft (wasm) {
   it('derives using a soft path', () => {
     const [pair] = randomPair(wasm);
@@ -109,10 +141,13 @@ export function sr25519DeriveSoft (wasm) {
     // console.log('\tSEC', u8aToHex(derived.slice(0, 64)));
     // console.log('\tPUB', u8aToHex(derived.slice(64)));
 
-    assert(derived.length === 96);
+    assert(derived.length === 96, 'Derived key length mismatch');
   });
 }
 
+/**
+ * @param {*} wasm
+ */
 export function sr25519DeriveSoftKnown (wasm) {
   it('derives a known soft key', () => {
     const derived = wasm.sr25519DeriveKeypairSoft(hexToU8a('0x28b0ae221c6bb06856b287f60d7ea0d98552ea5a16db16956849aa371db3eb51fd190cce74df356432b410bd64682309d6dedb27c76845daf388557cbac3ca3446ebddef8cd9bb167dc30878d7113b7e168e6f0646beffd77d69d39bad76b47a'), hexToU8a('0x0c666f6f00000000000000000000000000000000000000000000000000000000'));
@@ -125,6 +160,9 @@ export function sr25519DeriveSoftKnown (wasm) {
   });
 }
 
+/**
+ * @param {*} wasm
+ */
 export function sr25519DeriveSoftPubkey (wasm) {
   it('derives a known soft publicKey', () => {
     const derived = u8aToHex(wasm.sr25519DerivePublicSoft(hexToU8a('0x46ebddef8cd9bb167dc30878d7113b7e168e6f0646beffd77d69d39bad76b47a'), hexToU8a('0x0c666f6f00000000000000000000000000000000000000000000000000000000')));
@@ -135,6 +173,9 @@ export function sr25519DeriveSoftPubkey (wasm) {
   });
 }
 
+/**
+ * @param {*} wasm
+ */
 export function sr25519KeyAgreement (wasm) {
   it('allows for agreements', () => {
     const pair1 = wasm.sr25519KeypairFromSeed(hexToU8a('0x3b44c558f9a8f3dc9690d53088558c1ba2529b677e316c6054d1852595b004af'));
@@ -154,6 +195,9 @@ export function sr25519KeyAgreement (wasm) {
   });
 }
 
+/**
+ * @param {*} wasm
+ */
 export function sr25519Benchmark (wasm) {
   it('runs a verification benchmark', () => {
     const MESSAGE = stringToU8a('this is a message');

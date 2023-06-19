@@ -1,6 +1,8 @@
 // Copyright 2019-2023 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+/* global describe */
+
 import { assert } from '@polkadot/util';
 
 import * as bip39 from './bip39.js';
@@ -23,6 +25,10 @@ export const tests = {
   vrf
 };
 
+/**
+ * @param {string} name
+ * @param {*} wasm
+ */
 export async function initRun (name, wasm) {
   const result = await wasm.waitReady();
 
@@ -33,7 +39,12 @@ export async function initRun (name, wasm) {
   return result;
 }
 
+/**
+ * @param {string} name
+ * @param {*} wasm
+ */
 export function runAll (name, wasm) {
+  /** @type {string[]} */
   const failed = [];
   let count = 0;
 
@@ -71,27 +82,32 @@ export function runAll (name, wasm) {
   }
 }
 
+/**
+ * @param {string} type
+ * @param {*} wasm
+ */
 export function runUnassisted (type, wasm) {
   console.log(`\n*** ${type}: Running tests`);
 
   // for these we are pass-through describe and it handlers
+  // @ts-expect-error We are hacking this, so expect TS to be unhappy...
   globalThis.describe = (name, fn) => {
     console.log('\n', name);
 
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     fn();
   };
 
+  // @ts-expect-error We are hacking this, so expect TS to be unhappy...
   globalThis.it = (name, fn) => {
     console.log(`\t${name}`);
 
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     fn();
   };
 
   console.time(type);
 
   initRun(type, wasm)
+    // eslint-disable-next-line promise/always-return
     .then(() => {
       runAll(type, wasm);
       console.log(`\n*** ${type}: All passed`);

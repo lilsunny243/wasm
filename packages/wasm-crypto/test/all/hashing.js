@@ -1,8 +1,13 @@
 // Copyright 2019-2023 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+/* global it */
+
 import { assert, stringToU8a, u8aToHex } from '@polkadot/util';
 
+/**
+ * @param {*} wasm
+ */
 export function blake2bHash (wasm) {
   it('creates a known blake2b hash', () => {
     const hash = u8aToHex(wasm.blake2b(stringToU8a('abc'), new Uint8Array(), 64));
@@ -13,6 +18,9 @@ export function blake2bHash (wasm) {
   });
 }
 
+/**
+ * @param {*} wasm
+ */
 export function hmacSha256 (wasm) {
   it('creates a known hmacSha256', () => {
     const hash = u8aToHex(wasm.hmacSha256(stringToU8a('secret'), stringToU8a('some message')));
@@ -23,6 +31,9 @@ export function hmacSha256 (wasm) {
   });
 }
 
+/**
+ * @param {*} wasm
+ */
 export function hmacSha512 (wasm) {
   it('creates a known hmacSha512', () => {
     const hash = u8aToHex(wasm.hmacSha512(stringToU8a('secret'), stringToU8a('some message')));
@@ -33,6 +44,9 @@ export function hmacSha512 (wasm) {
   });
 }
 
+/**
+ * @param {*} wasm
+ */
 export function keccak256 (wasm) {
   it('creates a known keccak256 hash', () => {
     const hash = u8aToHex(wasm.keccak256(stringToU8a('test value')));
@@ -43,6 +57,9 @@ export function keccak256 (wasm) {
   });
 }
 
+/**
+ * @param {*} wasm
+ */
 export function keccak512 (wasm) {
   it('creates a known keccak512 hash', () => {
     const hash = u8aToHex(wasm.keccak512(stringToU8a('test')));
@@ -53,6 +70,9 @@ export function keccak512 (wasm) {
   });
 }
 
+/**
+ * @param {*} wasm
+ */
 export function pbkdf2Hash (wasm) {
   it('creates a known pbkdf2 hash', () => {
     const hash = u8aToHex(wasm.pbkdf2(stringToU8a('hello world'), stringToU8a('this is a salt'), 2048));
@@ -63,6 +83,9 @@ export function pbkdf2Hash (wasm) {
   });
 }
 
+/**
+ * @param {*} wasm
+ */
 export function scryptHash (wasm) {
   it('creates a known scrypt hash', () => {
     const hash = u8aToHex(wasm.scrypt(stringToU8a('password'), stringToU8a('salt'), 14, 8, 1));
@@ -73,6 +96,9 @@ export function scryptHash (wasm) {
   });
 }
 
+/**
+ * @param {*} wasm
+ */
 export function sha256Hash (wasm) {
   it('creates a known sha256 hash', () => {
     const hash = u8aToHex(wasm.sha256(stringToU8a('hello world')));
@@ -83,6 +109,9 @@ export function sha256Hash (wasm) {
   });
 }
 
+/**
+ * @param {*} wasm
+ */
 export function sha512Hash (wasm) {
   it('creates a known sha512 hash', () => {
     const hash = u8aToHex(wasm.sha512(stringToU8a('hello world')));
@@ -93,6 +122,9 @@ export function sha512Hash (wasm) {
   });
 }
 
+/**
+ * @param {*} wasm
+ */
 export function twoxHash (wasm) {
   it('creates a known twox hash', () => {
     const hash64 = u8aToHex(wasm.twox(stringToU8a('abc'), 1));

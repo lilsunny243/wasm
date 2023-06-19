@@ -3,4 +3,4 @@
 
 const asmJsInit = null;
 
-module.exports.asmJsInit = asmJsInit;
+exports.asmJsInit = asmJsInit;

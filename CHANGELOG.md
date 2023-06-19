@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 7.2.1 May 13, 2023
+
+Changes:
+
+- Adjust `cjs/bytes.js` generation to follow `export.<var> = ...` form
+- Add `module` to `package.json` export map (ESM-only)
+
+
+## 7.1.2 Apr 28, 2023
+
+Changes:
+
+- Apply `readonly` specifiers to private class fields where applicable
+- Adjust compilation output for `__internal__` class fields
+
+
 ## 7.1.1 Apr 22, 2023
 
 Changes:

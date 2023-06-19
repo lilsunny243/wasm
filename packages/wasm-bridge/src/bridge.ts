@@ -18,20 +18,21 @@ import { Wbg } from './wbg.js';
  * @description
  * Creates a bridge between the JS and WASM environments.
  *
- * For any bridge it is passed an function white is then called internally at the
+ * For any bridge it is passed an function which is then called internally at the
  * time of initialization. This affectively implements the layer between WASM and
  * the native environment, providing all the plumbing needed for the Wbg classes.
  */
 export class Bridge<C extends WasmBaseInstance> implements BridgeBase<C> {
+  readonly #createWasm: InitFn<C>;
+  readonly #heap: unknown[];
+  readonly #wbg: WasmImports;
+
   #cachegetInt32: Int32Array | null;
   #cachegetUint8: Uint8Array | null;
-  #createWasm: InitFn<C>;
-  #heap: unknown[];
   #heapNext: number;
   #wasm: C | null;
   #wasmError: string | null;
   #wasmPromise: InitPromise<C> | null;
-  #wbg: WasmImports;
   #type: 'asm' | 'wasm' | 'none';
 
   constructor (createWasm: InitFn<C>) {

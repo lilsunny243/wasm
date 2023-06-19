@@ -1,8 +1,13 @@
 // Copyright 2019-2023 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+/* global it */
+
 import { assert, u8aToHex } from '@polkadot/util';
 
+/**
+ * @param {*} wasm
+ */
 export function bip39Generate (wasm) {
   it('generates a bip39 phrase', () => {
     const res = wasm.bip39Generate(21);
@@ -13,6 +18,9 @@ export function bip39Generate (wasm) {
   });
 }
 
+/**
+ * @param {*} wasm
+ */
 export function bip39GenerateSubsequent (wasm) {
   it('generates different subsequent mnemonics', () => {
     const val1 = wasm.bip39Generate(24);
@@ -25,6 +33,9 @@ export function bip39GenerateSubsequent (wasm) {
   });
 }
 
+/**
+ * @param {*} wasm
+ */
 export function bip39Validate (wasm) {
   it('validates a created mnemonic', () => {
     const res = wasm.bip39Validate(wasm.bip39Generate(12));
@@ -35,6 +46,9 @@ export function bip39Validate (wasm) {
   });
 }
 
+/**
+ * @param {*} wasm
+ */
 export function bip39ToEntropy (wasm) {
   it('creates correct entropy for a known mnemonic', () => {
     const res = u8aToHex(wasm.bip39ToEntropy('legal winner thank year wave sausage worth useful legal winner thank yellow'));
@@ -45,6 +59,9 @@ export function bip39ToEntropy (wasm) {
   });
 }
 
+/**
+ * @param {*} wasm
+ */
 export function bip39ToMiniSecret (wasm) {
   it('creates the correct minisecret from a mnemonic', () => {
     const res = u8aToHex(wasm.bip39ToMiniSecret('legal winner thank year wave sausage worth useful legal winner thank yellow', 'Substrate'));
@@ -55,6 +72,9 @@ export function bip39ToMiniSecret (wasm) {
   });
 }
 
+/**
+ * @param {*} wasm
+ */
 export function bip39ToSeed (wasm) {
   it('creates the correct seed for a mnemonic', () => {
     const res = u8aToHex(wasm.bip39ToSeed('seed sock milk update focus rotate barely fade car face mechanic mercy', ''));
